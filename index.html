@@ -14,7 +14,7 @@
   - 仅限个人使用，非授权不得商用.
 -->
 <!DOCTYPE html>
-<html lang="zh-CN" style="height: 100%;">
+<html lang="zh-CN" style="height: 100%; margin: 0; padding: 0;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -31,36 +31,38 @@
             --real-bar: #6c5ce7;
         }
 
+        html, body {
+            background: #0a0a0f;
+            height: 100%; width: 100%; margin: 0; padding: 0;
+            overflow: hidden;
+        }
+
         body {
             background: radial-gradient(circle at 50% 0%, #1e1e2f, #0a0a0f);
             color: var(--text-main);
             font-family: 'Inter', -apple-system, sans-serif;
-            margin: 0; padding: 0; 
-            height: 100%;
             display: flex; flex-direction: column;
-            overflow: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
-        .top-region { flex-shrink: 0; padding: 0 15px; z-index: 30; }
+        .top-region { flex-shrink: 0; padding: 0 15px; z-index: 100; }
+        
         .main-content { 
             flex: 1; 
             overflow-y: auto; 
-            padding: 0 15px 120px; /* 增加底部填充，为新按钮留位 */
+            padding: 0 15px 30px; 
             -webkit-overflow-scrolling: touch; 
         }
 
         .header { 
             position: relative; text-align: center; margin: 0 0 20px; padding-top: 45px; 
         }
-        .header h1 { 
-            font-weight: 200; letter-spacing: 5px; text-transform: uppercase; font-size: 16px; margin: 0; opacity: 0.8;
-        }
+        .header h1 { font-weight: 200; letter-spacing: 5px; text-transform: uppercase; font-size: 16px; margin: 0; opacity: 0.8; }
         
         .lang-toggle {
             position: absolute; top: 10px; right: 0px; font-size: 10px; background: transparent;
             border: 1px solid rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 20px; 
-            cursor: pointer; color: #fff; font-weight: 200; letter-spacing: 1px; z-index: 40;
+            cursor: pointer; color: #fff; font-weight: 200; letter-spacing: 1px; z-index: 110;
         }
 
         .tab-bar {
@@ -70,25 +72,20 @@
         .tab { flex: 1; text-align: center; padding: 10px; font-size: 11px; letter-spacing: 1px; border-radius: 25px; cursor: pointer; }
         .tab.active { background: var(--accent); color: #fff; }
 
-        .card {
-            background: var(--glass-bg); backdrop-filter: blur(15px); border: 1px solid var(--glass-border);
-            border-radius: 20px; padding: 20px; margin-bottom: 15px;
-        }
+        .card { background: var(--glass-bg); backdrop-filter: blur(15px); border: 1px solid var(--glass-border); border-radius: 20px; padding: 20px; margin-bottom: 15px; }
 
-        /* 甘特图样式 */
         .gantt-outer { overflow-x: auto; background: var(--glass-bg); border-radius: 15px; border: 1px solid var(--glass-border); padding: 10px; position: relative; }
-        .gantt-container { display: flex; flex-direction: column; }
-        .gantt-header-block { position: sticky; top: 0; background: #15151e; z-index: 5; margin-bottom: 10px; }
+        .gantt-container { min-width: 1000px; display: flex; flex-direction: column; }
+        .gantt-header-block { position: sticky; top: 0; background: #15151e; z-index: 10; margin-bottom: 10px; }
         .gantt-header-row { display: flex; border-bottom: 1px solid var(--glass-border); padding-bottom: 5px; }
         .gantt-month-label { font-size: 10px; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; padding-left: 5px; border-left: 1px solid var(--glass-border); flex-shrink: 0; }
         .gantt-week-row { display: flex; border-bottom: 1px solid var(--glass-border); padding-bottom: 5px; }
         .gantt-week-label { text-align: center; font-size: 8px; color: var(--text-dim); border-left: 1px solid rgba(255,255,255,0.05); flex-shrink: 0; }
-        
         .gantt-row { display: flex; margin-bottom: 12px; align-items: center; }
         .gantt-info { 
             width: 80px; flex-shrink: 0; font-size: 10px; padding-right: 10px; 
             white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-            position: sticky; left: 0; background: #15151e; z-index: 2;
+            position: sticky; left: 0; background: #15151e; z-index: 5;
             box-shadow: 2px 0 5px rgba(0,0,0,0.3);
         }
         .gantt-track { flex-grow: 1; position: relative; height: 18px; background: rgba(255,255,255,0.02); border-radius: 4px; }
@@ -97,62 +94,39 @@
 
         .input-group { margin-bottom: 15px; }
         label { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); display: block; margin-bottom: 6px; }
-        input, textarea, select {
+        input, textarea {
             background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
             border-radius: 10px; padding: 10px; color: #fff; width: 100%; box-sizing: border-box; outline: none; font-size: 13px;
         }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
         .project-item { 
-            background: rgba(255,255,255,0.02); 
-            border: 1px solid var(--glass-border); 
-            border-radius: 15px; 
-            padding: 15px; 
-            margin-bottom: 12px; 
-            position: relative; 
+            background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); border-radius: 15px; 
+            padding: 15px; margin-bottom: 12px; position: relative; 
         }
-        .color-indicator {
-            position: absolute; top: 10px; left: 10px; width: 6px; height: 6px; border-radius: 50%;
-        }
+        .color-indicator { position: absolute; top: 10px; left: 10px; width: 6px; height: 6px; border-radius: 50%; }
         .score-display { font-size: 22px; font-weight: 100; color: var(--text-dim); position: absolute; top: 15px; right: 15px; }
         .p-name { font-size: 15px; font-weight: 400; margin-bottom: 8px; padding-right: 50px; padding-left: 10px; }
         .p-meta { font-size: 9px; color: var(--text-dim); padding-left: 10px; }
 
+        /* 选色器样式 */
         .color-dot-picker { 
-            width: 30px; height: 30px; border-radius: 50%; border: 2px solid #fff; cursor: pointer; 
-            position: relative; display: inline-block;
+            width: 32px; height: 32px; border-radius: 50%; border: 2px solid #fff; cursor: pointer; 
+            position: relative; overflow: hidden;
             background: conic-gradient(red, yellow, lime, aqua, blue, magenta, red);
         }
-        .color-input-hidden { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+        .color-input-hidden { position: absolute; top: -5px; left: -5px; width: 50px; height: 50px; opacity: 0; cursor: pointer; }
 
-        /* 数据操作按钮 */
-        .data-ops {
-            display: flex; justify-content: center; gap: 15px; margin-bottom: 10px; padding: 0 15px;
-        }
-        .btn-mini {
-            background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border);
-            color: #aaa; font-size: 10px; padding: 6px 12px; border-radius: 15px; cursor: pointer;
-            text-transform: uppercase; letter-spacing: 1px;
-        }
-
-        #modalOverlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(15px); z-index: 100; padding: 15px; box-sizing: border-box; overflow-y: auto; }
-        .btn { background: var(--accent-gradient); border: none; color: #fff; padding: 14px; width: 100%; border-radius: 12px; letter-spacing: 1px; font-weight: bold; font-size: 12px; cursor: pointer; }
-        .btn-ghost { background: transparent; border: 1px solid rgba(255,255,255,0.1); margin-top: 10px; }
-        
-        .footer {
-            position: fixed;
-            bottom: 0; left: 0; right: 0;
-            text-align: center; 
-            font-size: 10px; 
-            color: #666; 
-            padding: 12px 15px; 
-            line-height: 1.6;
-            background: #0a0a0f; 
-            border-top: 1px solid var(--glass-border);
-            z-index: 50; 
-        }
+        .footer-region { flex-shrink: 0; z-index: 100; background: #0a0a0f; border-top: 1px solid var(--glass-border); }
+        .data-ops { display: flex; justify-content: center; gap: 15px; padding: 10px 15px 5px; }
+        .btn-mini { background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: #aaa; font-size: 10px; padding: 6px 12px; border-radius: 15px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; }
+        .footer { text-align: center; font-size: 10px; color: #666; padding: 10px 15px 20px; line-height: 1.6; }
         .footer a { color: var(--accent); text-decoration: none; }
         .flex-between { display: flex; justify-content: space-between; align-items: center; }
+
+        #modalOverlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(15px); z-index: 200; padding: 15px; box-sizing: border-box; overflow-y: auto; }
+        .btn { background: var(--accent-gradient); border: none; color: #fff; padding: 14px; width: 100%; border-radius: 12px; letter-spacing: 1px; font-weight: bold; font-size: 12px; cursor: pointer; }
+        .btn-ghost { background: transparent; border: 1px solid rgba(255,255,255,0.1); margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -190,30 +164,29 @@
         </div>
     </div>
 
-    <!-- 数据导入导出区 -->
-    <div style="position: fixed; bottom: 65px; left: 0; right: 0; z-index: 45;">
+    <div class="footer-region">
         <div class="data-ops">
             <button class="btn-mini" onclick="exportData()" data-i18n="btnExport">Export Data</button>
             <button class="btn-mini" onclick="document.getElementById('importFile').click()" data-i18n="btnImport">Import Data</button>
             <input type="file" id="importFile" style="display:none" accept=".json" onchange="importData(this)">
         </div>
-    </div>
-
-    <div class="footer">
-        Copyright © 2026 吕滢 | GitHub: <a href="https://github.com/lveyond" target="_blank">@lveyond</a><br>
-        QQ/WeChat: 329613507 | 仅限个人使用，非授权不得商用
+        <div class="footer">
+            Copyright © 2026 吕滢 | GitHub: <a href="https://github.com/lveyond" target="_blank">@lveyond</a><br>
+            QQ/WeChat: 329613507 | 仅限个人使用，非授权不得商用
+        </div>
     </div>
 
     <div id="modalOverlay">
         <div class="card">
             <div class="input-group">
                 <div class="flex-between">
-                    <label data-i18n="pNameLabel">Objective Name</label>
+                    <label data-i18n="pColorLabel">Highlight Color</label>
                     <div class="color-dot-picker" id="mColorDot">
                         <input type="color" id="mColorInput" class="color-input-hidden" oninput="updateProjColor(this.value)">
                     </div>
                 </div>
-                <input type="text" id="mName" style="font-size: 16px; font-weight: bold; border-color: var(--accent); margin-top:5px;">
+                <label data-i18n="pNameLabel" style="margin-top:10px;">Objective Name</label>
+                <input type="text" id="mName" style="font-size: 16px; font-weight: bold; border-color: var(--accent);">
             </div>
             <div class="grid-2">
                 <div class="input-group"><label data-i18n="owner1">Owner 1</label><input type="text" id="mOwner1"></div>
@@ -253,7 +226,7 @@
                 desc: "项目描述", btnCommit: "提交更改", btnDismiss: "返回", btnDelete: "彻底删除",
                 ganttHint: "* 浅色条: 计划 | 深色条: 实际", ownerLabel: "负责人", dueLabel: "截止", 
                 week: "第", weekSuffix: "周", pNameLabel: "需求名称 (可修改)", btnDuplicate: "复制并新增卡片",
-                btnExport: "导出数据", btnImport: "导入数据"
+                btnExport: "导出数据", btnImport: "导入数据", pColorLabel: "高亮色选择"
             },
             en: {
                 title: "Demand Decision Center", tabDecide: "DECISION", tabGantt: "TIMELINE", quickEntry: "Quick Objective", btnInit: "Initialize Entry",
@@ -261,13 +234,13 @@
                 desc: "Description", btnCommit: "Commit Changes", btnDismiss: "Dismiss", btnDelete: "Delete",
                 ganttHint: "* Light bar: Plan | Dark bar: Real", ownerLabel: "OWNER", dueLabel: "DUE", 
                 week: "W", weekSuffix: "", pNameLabel: "Objective Name (Editable)", btnDuplicate: "Duplicate Card",
-                btnExport: "Export Data", btnImport: "Import Data"
+                btnExport: "Export Data", btnImport: "Import Data", pColorLabel: "Highlight Color"
             }
         };
 
         const DEFAULT_COLOR = '#6c5ce7';
         let currentLang = localStorage.getItem('pm_lang') || 'en';
-        let projects = JSON.parse(localStorage.getItem('pm_pro_v6')) || [];
+        let projects = JSON.parse(localStorage.getItem('pm_pro_v8')) || [];
         let editingId = null;
         let selectedProjColor = DEFAULT_COLOR;
 
@@ -302,19 +275,12 @@
         function quickAdd() {
             const name = document.getElementById('quickName').value;
             if(!name) return;
-            const p = createProjectObj(name);
+            const p = { id: Date.now(), name, owner1: '', owner2: '', pStart: '', pEnd: '', rStart: '', rEnd: '', desc: '', reach: 1000, impact: 1, conf: 100, effort: 5, boss: 1, tech: 1, score: 0, color: DEFAULT_COLOR };
             projects.push(p);
+            updateScore(p);
             save();
             document.getElementById('quickName').value = '';
             renderDecide();
-        }
-
-        function createProjectObj(name) {
-            return {
-                id: Date.now(), name, owner1: '', owner2: '', pStart: '', pEnd: '', rStart: '', rEnd: '',
-                desc: '', reach: 1000, impact: 1, conf: 100, effort: 5, boss: 1, tech: 1, score: 0,
-                color: DEFAULT_COLOR
-            };
         }
 
         function updateScore(p) {
@@ -339,8 +305,9 @@
             document.getElementById('mEffort').value = p.effort;
             document.getElementById('mBoss').value = p.boss;
             document.getElementById('mTech').value = p.tech;
+            
             selectedProjColor = p.color || DEFAULT_COLOR;
-            document.getElementById('mColorDot').style.background = (selectedProjColor === DEFAULT_COLOR) ? 'conic-gradient(red, yellow, lime, aqua, blue, magenta, red)' : selectedProjColor;
+            document.getElementById('mColorDot').style.background = (selectedProjColor.toLowerCase() === DEFAULT_COLOR.toLowerCase()) ? 'conic-gradient(red, yellow, lime, aqua, blue, magenta, red)' : selectedProjColor;
             document.getElementById('mColorInput').value = selectedProjColor;
             document.getElementById('modalOverlay').style.display = 'block';
         }
@@ -386,11 +353,10 @@
             const a = document.createElement("a");
             a.href = url;
             const now = new Date();
-            a.download = `需求决策备份_${now.getFullYear()}${now.getMonth()+1}${now.getDate()}.json`;
+            a.download = `Backup_${now.getFullYear()}${now.getMonth()+1}${now.getDate()}.json`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
-            URL.revokeObjectURL(url);
         }
 
         function importData(input) {
@@ -401,18 +367,11 @@
                 try {
                     const imported = JSON.parse(e.target.result);
                     if (Array.isArray(imported)) {
-                        if (confirm(currentLang === 'zh' ? "导入将覆盖当前所有数据喵，确定吗？" : "Import will overwrite all current data. Proceed?")) {
-                            projects = imported;
-                            save();
-                            renderDecide();
-                            alert(currentLang === 'zh' ? "数据导入成功啦！" : "Data Imported Successfully!");
-                        }
-                    } else {
-                        alert("文件格式不正确喵！");
+                        projects = imported;
+                        save();
+                        renderDecide();
                     }
-                } catch (err) {
-                    alert("解析文件失败喵！");
-                }
+                } catch (err) { alert("Error!"); }
             };
             reader.readAsText(file);
         }
@@ -428,7 +387,7 @@
         }
         function save() {
             projects.sort((a,b) => b.score - a.score);
-            localStorage.setItem('pm_pro_v6', JSON.stringify(projects));
+            localStorage.setItem('pm_pro_v8', JSON.stringify(projects));
         }
         function renderDecide() {
             const list = document.getElementById('projectList');
